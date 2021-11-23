@@ -1,20 +1,26 @@
 package com.company;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        int input;
-        // input a scanner to identify the input
+        int input = 0;
+
         Scanner scanner = new Scanner(System.in);
-        // make sure it's an int
-        while(true) {
-            System.out.print("Input a number: ");
-            input = scanner.nextInt();
-            if (scanner.hasNextInt())
+
+        while (true) {
+            try {
+                System.out.print("Input a number: ");
+                input = scanner.nextInt();
                 break;
-            System.out.print("Input a number: ");
+            }
+            catch (InputMismatchException e) {
+                System.out.println("Not a valid input. It needs to be a number");
+                scanner.nextLine();
+                continue;
+            }
         }
 
         if (input % 3 == 0)
